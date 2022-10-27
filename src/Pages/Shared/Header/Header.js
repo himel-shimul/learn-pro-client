@@ -1,12 +1,27 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Button, Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import { FaGithub, FaGoogle} from 'react-icons/fa';
 import LeftSide from '../Leftside/LeftSide';
 import { FaUserAlt } from 'react-icons/fa';
 import logo from '../../../assets/Logo/logo.png'
+import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 
 const Header = () => {
+  const {providerLogin} = useContext(AuthContext);
+  const googleProvider = new GoogleAuthProvider();
+
+  const handleGoogleSignIn = () =>{
+    providerLogin(googleProvider)
+    .then(r =>{
+      const user = r.user;
+      console.log(user);
+    })
+    .catch(e =>console.error(e))
+  }
+
     return (
         <div>
             <Navbar collapseOnSelect className='mb-4' expand="lg" bg="light" variant="light">
@@ -23,19 +38,9 @@ const Header = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#features">ALl News</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-            <NavDropdown title="Dropdown" id="collapsible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Link title='courses' href="#features">Courses</Nav.Link>
+            <Nav.Link href="#pricing">Blog</Nav.Link>
+            <NavLink to={'/register'}>register</NavLink>
           </Nav>
           <Nav>
             <>
@@ -48,6 +53,8 @@ const Header = () => {
               {
               }
             </Link>
+            <Button onClick={handleGoogleSignIn} variant="outline-info"><FaGoogle/> Google Signin </Button>
+            <Button variant="outline-dark"><FaGithub/> Github Signin </Button>
           </Nav>
           <div className='d-lg-none'>
             <LeftSide></LeftSide>
