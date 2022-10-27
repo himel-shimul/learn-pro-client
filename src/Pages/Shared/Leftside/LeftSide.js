@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const LeftSide = () => {
@@ -15,9 +16,10 @@ const LeftSide = () => {
             
             <div>
             {
-                categories.map(category => <p className='text-warning'
+                categories.map(category => <p
+                    
                      key={category.cat_id}
-                     ><Link to={`/category/${category.cat_id}`}>{category.cat_name}</Link></p>)
+                     ><Link style={{ color: 'inherit', textDecoration: 'none', fontSize: '20px', padding: '5px'}} to={`/category/${category.cat_id}` }>{category.cat_name}</Link></p>)
             }
             </div>
         </div>
