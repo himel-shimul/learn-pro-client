@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useContext } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import AuthProvider, { AuthContext } from '../../context/AuthProvider/AuthProvider';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const Register = () => {
     const [error, setError] = useState('');
@@ -77,6 +78,9 @@ const Register = () => {
       </Button>
       <Form.Text className="ms-2 text-danger">
           {error}
+        </Form.Text>
+        <Form.Text className="ms-2">
+          <p>Already Sign in? Let's<Link to={'/login'}>Log in</Link></p>
         </Form.Text>
     </Form>
     );
