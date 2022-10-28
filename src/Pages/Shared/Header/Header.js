@@ -8,6 +8,9 @@ import logo from '../../../assets/Logo/logo.png'
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 import { GoogleAuthProvider, GithubAuthProvider } from 'firebase/auth';
 import ToggleSwitch from '../../ToggleSwitch/ToggleSwitch';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
+
 
 
 const Header = () => {

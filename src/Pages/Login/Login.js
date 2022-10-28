@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Card, Form } from 'react-bootstrap';
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
@@ -36,7 +36,8 @@ const Login = () => {
   }
     
     return (
-        <Form onSubmit={handleSubmit}>
+      <Card className="w-50 p-4 m-auto bg-light">
+        <Form onSubmit={handleSubmit} >
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control name='email' type="email" placeholder="Enter email" required/>
@@ -56,9 +57,11 @@ const Login = () => {
           {error}
         </Form.Text>
       <Form.Text className="ms-2">
-          <p>New Here? Let's<Link to={'/register'}>Register</Link></p>
+        <hr />
+          <p>New Here? Let's <Link to={'/register'}>Register</Link></p>
         </Form.Text>
     </Form>
+    </Card>
     );
 };
 

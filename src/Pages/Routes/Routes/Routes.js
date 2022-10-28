@@ -5,6 +5,7 @@ import Blog from "../../Blog/Blog";
 import Category from "../../Category/Category";
 import ChackOut from "../../ChackOut/ChackOut";
 import CourseDetails from "../../CourseDetails/CourseDetails";
+import ErrorPage from "../../ErrorPage/ErrorPage";
 import Home from "../../Home/Home";
 import Login from "../../Login/Login";
 import Profile from "../../Profile/Profile";
@@ -16,6 +17,7 @@ export const routes = createBrowserRouter([
     {
         path: '/',
         element: <Root></Root>,
+        errorElement:<ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
@@ -45,7 +47,7 @@ export const routes = createBrowserRouter([
             },
             {
                 path: 'chackout/:id',
-                element: <ChackOut></ChackOut>,
+                element: <PrivateRoute><ChackOut></ChackOut></PrivateRoute>,
                 loader: ({params}) => fetch(`https://learn-pro-server.vercel.app/courses/${params.id}`)
             },
             {
@@ -62,7 +64,7 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/profile',
-                element: <Profile></Profile>,
+                element: <PrivateRoute><Profile></Profile></PrivateRoute>,
             },
         ]
     },

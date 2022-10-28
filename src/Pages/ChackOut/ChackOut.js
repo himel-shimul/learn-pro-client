@@ -15,7 +15,7 @@ const ChackOut = () => {
       <Card.Body>
         <Card.Title></Card.Title>
         <Card.Text>
-          
+          <h4>{title}</h4>
         </Card.Text>
       </Card.Body>
       <ListGroup className="list-group-flush">

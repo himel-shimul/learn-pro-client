@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useContext } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Card, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
@@ -46,10 +46,11 @@ const Register = () => {
 
 
     return (
+      <Card className="w-50 p-4 m-auto bg-light">
         <Form onSubmit={handleSubmit}>
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Your Name</Form.Label>
-        <Form.Control name='name' type="name" placeholder="Your name" />
+        <Form.Label>Full Name</Form.Label>
+        <Form.Control name='name' type="name" placeholder="Full name" />
       </Form.Group>
       
 
@@ -80,9 +81,11 @@ const Register = () => {
           {error}
         </Form.Text>
         <Form.Text className="ms-2">
-          <p>Already Sign in? Let's<Link to={'/login'}>Log in</Link></p>
+          <hr />
+          <p>Already Sign in? Let's <Link to={'/login'}>Log in</Link></p>
         </Form.Text>
     </Form>
+    </Card>
     );
 };
 
