@@ -1,11 +1,12 @@
 import React from 'react';
-import { Card } from 'react-bootstrap';
-import { useLoaderData } from 'react-router-dom';
+import { Button, Card } from 'react-bootstrap';
+import { Link, useLoaderData } from 'react-router-dom';
+import ChackOut from '../ChackOut/ChackOut';
 
-const CourseDetails = () => {
+
+const CourseDetails = ({children}) => {
     const course = useLoaderData();
-    // console.log(news);
-    const {title, details, image_url, author, rating, price} = course;
+    const {title, details, image_url, author, rating, price, _id} = course;
     return (
         <Card>
         <Card.Img variant="top" src={image_url} />
@@ -15,6 +16,8 @@ const CourseDetails = () => {
             <p>Rating: {rating.number}</p>
             <h4>$ {price}</h4>
             <Card.Text>{details}</Card.Text>
+            
+            <Link to={`/chackout/${_id}`}><Button variant="success">Get premium access</Button></Link>
         </Card.Body>
         </Card>
     );

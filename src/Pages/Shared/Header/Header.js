@@ -51,7 +51,7 @@ const Header = () => {
 
     return (
         
-            <Navbar collapseOnSelect className='mb-4 ' expand="lg" bg="light" variant="light">
+            <Navbar collapseOnSelect className='mb-4 ' expand="lg" bg="light" variant="light" >
       <Container>
         <Navbar.Brand><Link to="/">
         <img

@@ -12,14 +12,14 @@ const LeftSide = () => {
     } , [])
     return (
         <div>
-            <h4>All category: {categories.length}</h4>
+            <h4>All category Courses</h4><hr />
             
             <div>
             {
                 categories.map(category => <p
                     
                      key={category.cat_id}
-                     ><Link style={{ color: 'inherit', textDecoration: 'none', fontSize: '20px', padding: '5px'}} to={`/category/${category.cat_id}` }>{category.cat_name}</Link></p>)
+                     ><Link style={{ color: 'inherit', textDecoration: 'none', fontSize: '20px', padding: '5px'}} to={`category/${category.cat_id}` }>{category.cat_name}</Link></p>)
             }
             </div>
         </div>

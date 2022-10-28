@@ -7,16 +7,20 @@ const Category = () => {
     const categoryCourses = useLoaderData();
     return (
         <div>
+            <Container>
+            <Row>
             {
-                categoryCourses.map(course => <Container>
-                    <Row>
+                categoryCourses.map(course => 
+                    
                         <Col xs={6} md={4}><CourseCard
                     key={course.id}
                     course={course}
                 ></CourseCard></Col>
-                    </Row>
-                </Container>)
+                    
+               )
             }
+            </Row>
+            </Container>
         </div>
     );
 };
