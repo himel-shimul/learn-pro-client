@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useContext } from 'react';
 import { Button, Card, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const Register = () => {
     const [error, setError] = useState('');
-    const {createUser, updateUserProfile} = useContext(AuthContext);
+    const {createUser, updateUserProfile, user} = useContext(AuthContext);
+    const location = useLocation();
+  const from = location?.state?.from?.pathname || '/';
 
     const handleSubmit =event =>{
         event.preventDefault();
@@ -43,7 +45,9 @@ const Register = () => {
           .then({})
           .catch(error => console.error(error))
       }
-
+      if(user){
+        return <Navigate to={from} state={{from: location}} replace></Navigate>
+      }
 
     return (
       <Card className="w-50 p-4 m-auto bg-light">
