@@ -6,7 +6,7 @@ import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 const Login = () => {
 
     const [error, setError] = useState('');
-  const {signIn, setLoading} = useContext(AuthContext);
+  const {signIn, setLoading, user} = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -34,6 +34,9 @@ const Login = () => {
       setLoading(false);
     })
   }
+  if(user){
+    return <Navigate to='/' state={{from: location}} replace></Navigate>
+}
     
     return (
       <Card className="w-50 p-4 m-auto bg-light">
