@@ -11,7 +11,7 @@ const Profile = () => {
             <Card style={{ width: '25rem', margin:'auto' }}>
       <Card.Img style={{ width: '120px', height: '120px', borderRadius:'50%',marginTop:'-30px', margin:' auto' }} variant="top" src={user?.photoURL} />
       <Card.Body>
-        <Card.Title>{user?.displayName ? user?.email : "not Found"}</Card.Title>
+        <Card.Title>{user?.displayName ? user?.displayName : "not Found"}</Card.Title>
         <Card.Text>
           
         </Card.Text>
