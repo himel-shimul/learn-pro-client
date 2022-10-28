@@ -6,15 +6,34 @@ import LeftSide from '../Leftside/LeftSide';
 import { FaUserAlt } from 'react-icons/fa';
 import logo from '../../../assets/Logo/logo.png'
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GoogleAuthProvider, GithubAuthProvider } from 'firebase/auth';
 import ToggleSwitch from '../../ToggleSwitch/ToggleSwitch';
 
 
 const Header = () => {
-  const {providerLogin, user, logOut} = useContext(AuthContext);
+  const {providerLogin, user, logOut, githubLogin} = useContext(AuthContext);
   
   const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
 
+  const handleGithubSignIn = () =>{
+    githubLogin(githubProvider)
+    .then((result) => {
+      // This gives you a GitHub Access Token. You can use it to access the GitHub API.
+      const credential = GithubAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+  
+      // The signed-in user info.
+      const user = result.user;
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      const email = error.customData.email;
+      const credential = GithubAuthProvider.credentialFromError(error);
+    })
+  }
   const handleGoogleSignIn = () =>{
     providerLogin(googleProvider)
     .then(r =>{
@@ -23,6 +42,7 @@ const Header = () => {
     })
     .catch(e =>console.error(e))
   }
+
   const handleLogOut = () =>{
     logOut()
     .then( () =>{})
@@ -45,9 +65,9 @@ const Header = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link title='courses' href="#features">Courses</Nav.Link>
-            <Nav.Link title='courses' href="#pricing">Blog</Nav.Link>
-            <NavLink to={'/register'}>register</NavLink>
+            <NavLink title='courses' to="/courses" style={{ color: 'gray', paddingRight: '7px', margin: 'auto', textDecoration: 'none'}}>Courses</NavLink>
+            <NavLink title='blog' to="/blog" style={{ color: 'gray',margin: 'auto', textDecoration: 'none'}}>Blog</NavLink>
+            
             <ToggleSwitch label=" " />
           </Nav>
           <Nav>
@@ -76,7 +96,7 @@ const Header = () => {
                   <p className='m-auto p-2'><Link  style={{ color: 'inherit', textDecoration: 'none'}} to='/login'>Login</Link></p>
                   <p className='m-auto p-2'><Link  style={{ color: 'inherit', textDecoration: 'none'}} to='/register'>Register</Link></p>
                   <Button className='me-2' onClick={handleGoogleSignIn} variant="outline-info"><FaGoogle/> Google Signin </Button>
-                  <Button variant="outline-dark"><FaGithub/> Github Signin </Button>
+                  <Button variant="outline-dark" onClick={handleGithubSignIn}><FaGithub/> Github Signin </Button>
                 </>
                 
               }
@@ -84,9 +104,6 @@ const Header = () => {
             
             
           </Nav>
-          {/* <div className='d-lg-none'>
-            <LeftSide></LeftSide>
-          </div> */}
         </Navbar.Collapse>
       </Container>
     </Navbar>

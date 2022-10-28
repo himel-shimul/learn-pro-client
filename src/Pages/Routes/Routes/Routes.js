@@ -1,25 +1,39 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../../layout/Main";
+import Blog from "../../Blog/Blog";
 import Category from "../../Category/Category";
 import CourseDetails from "../../CourseDetails/CourseDetails";
+import Home from "../../Home/Home";
 import Login from "../../Login/Login";
+import Profile from "../../Profile/Profile";
 import Register from "../../Register/Register";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const routes = createBrowserRouter([
     {
         path: '/',
-        element: <Main></Main>,
-        children:[
+        element: <Home></Home>,
+        children: [
             {
-                path: '/category/:id',
-                loader: ({params}) => fetch(`http://localhost:5000/category/${params.id}`),
-                element: <Category></Category>
+                path: '/',
+                element: <Main></Main>,
+                children:[
+                    {
+                        path: '/category/:id',
+                        loader: ({params}) => fetch(`https://learn-pro-server.vercel.app/category/${params.id}`),
+                        element: <Category></Category>
+                    },
+                    {
+                        path: '/courses/:id',
+                        element: <CourseDetails></CourseDetails>,
+                        loader: ({params}) => fetch(`https://learn-pro-server.vercel.app/courses/${params.id}`)
+                    },
+
+                ]
             },
             {
-                path: '/courses/:id',
-                element: <PrivateRoute><CourseDetails></CourseDetails></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/courses/${params.id}`)
+                path: '/blog',
+                element: <Blog></Blog>,
             },
             {
                 path: '/login',
@@ -29,6 +43,12 @@ export const routes = createBrowserRouter([
                 path: '/register',
                 element: <Register></Register>,
             },
+            {
+                path: '/profile',
+                element: <Profile></Profile>,
+            },
         ]
-    }
+    },
+    
+   
 ])

@@ -9,8 +9,8 @@ const Main = () => {
         <div>
             <Container>
             <Row>
-                <Header></Header>
-                <Col lg="3" className='d-none d-lg-block'>
+               
+                <Col lg="3" className='d-lg-block'>
                     <LeftSide></LeftSide>
                 </Col>
                 <Col lg="9">
