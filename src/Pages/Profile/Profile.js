@@ -17,7 +17,7 @@ const Profile = () => {
         </Card.Text>
       </Card.Body>
       <ListGroup className="list-group-flush">
-        <ListGroup.Item>Email: {user?.email}</ListGroup.Item>
+        <ListGroup.Item>Email: {user?.email ? user?.email : "not Found"}</ListGroup.Item>
         
       </ListGroup>
       <Card.Body>
