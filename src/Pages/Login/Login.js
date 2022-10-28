@@ -35,7 +35,7 @@ const Login = () => {
     })
   }
   if(user){
-    return <Navigate to='/' state={{from: location}} replace></Navigate>
+    return <Navigate to={from} state={{from: location}} replace></Navigate>
 }
     
     return (
